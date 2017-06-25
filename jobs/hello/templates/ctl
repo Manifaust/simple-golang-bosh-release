@@ -1,0 +1,32 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/hello
+LOG_DIR=/var/vcap/sys/log/hello
+
+PIDFILE=$RUN_DIR/hello.pid
+RUNAS=vcap
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR
+    chown -R $RUNAS:$RUNAS $RUN_DIR $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    exec /var/vcap/packages/simple_server/hello \
+      1>>$LOG_DIR/hello.stdout.log \
+      2>>$LOG_DIR/hello.stderr.log
+
+    ;;
+
+  stop)
+    kill -9 `cat $PIDFILE`
+    rm -f $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: ctl {start|stop}" ;;
+
+esac

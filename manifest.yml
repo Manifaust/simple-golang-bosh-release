@@ -1,0 +1,41 @@
+---
+name: simple-go
+
+releases:
+- name: simple-go
+  version: latest
+
+networks:
+- name: default
+  subnets:
+  - range: 10.244.0.16/28
+    reserved: [10.244.0.17]
+    static: [10.244.0.18]
+
+resource_pools:
+- name: default
+  stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: latest
+  network: default
+
+compilation:
+  workers: 2
+  network: default
+
+update:
+  canaries: 1
+  max_in_flight: 2
+  canary_watch_time: 1000-30000
+  update_watch_time: 1000-30000
+
+jobs:
+- name: hello
+  templates:
+  - name: hello
+  instances: 1
+  resource_pool: default
+  networks:
+  - name: default
+    static_ips:
+    - 10.244.0.18

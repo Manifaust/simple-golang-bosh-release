@@ -1,0 +1,8 @@
+---
+name: simple_server
+
+dependencies:
+- golang
+
+files:
+- simple_server/**/*

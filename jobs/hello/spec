@@ -1,0 +1,7 @@
+---
+name: hello
+templates:
+  ctl: bin/ctl
+
+packages:
+- simple_server
