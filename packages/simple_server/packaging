@@ -9,10 +9,7 @@ export PATH=$GOROOT/bin:$PATH
 mkdir ${BOSH_INSTALL_TARGET}/src
 cp -a * ${BOSH_INSTALL_TARGET}/src
 
-
 pushd ${BOSH_INSTALL_TARGET}/src/simple_server
-
-  find .
 
   go build -o ${BOSH_INSTALL_TARGET}/hello
 
