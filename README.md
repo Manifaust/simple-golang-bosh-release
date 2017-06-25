@@ -12,4 +12,6 @@ $ cd simple-golang-bosh-release
 $ bosh create-release
 $ bosh -e <environment_name> upload-release
 $ bosh -e <environment_name> -d simple-go deploy manifest.yml
+$ curl 10.244.0.18:8080/crustaceans
+Hi there, I love crustaceans!
 ```
