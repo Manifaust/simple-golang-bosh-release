@@ -23,3 +23,9 @@ $ bosh -e <environment_name> -d simple-go deploy manifest.yml
 $ curl 10.244.0.18:8080/crustaceans
 Hi there, I love crustaceans!
 ```
+
+## Customizing the App
+
+The entire server code resides in [`src/simple_server/hello.go`](src/simple_server/hello.go), you can customize it to do more. If you need greater control over the build process, take a look at [`packages/simple_server/packaging`](packages/simple_server/packaging).
+
+After making changes to the release, just commit your code and run `bosh create-release` (and subsequent steps) again.
